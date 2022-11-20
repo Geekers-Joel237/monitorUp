@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('emprunters', function (Blueprint $table) {
             $table->id();
+            $table->date('dateDebut');
+            $table->time('heureDebut');
+            $table->integer('duree');
+            $table->boolean('etatEmprunt');
+            $table->boolean('isValider');
+            $table->foreignId('ressource_id')->constrained('ressources');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

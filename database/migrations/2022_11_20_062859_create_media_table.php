@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
+            $table->string('filePath');
+            $table->string('fileName');
+            $table->string('extension');
+            $table->foreignId('ressource_id')->constrained('ressources');
             $table->timestamps();
         });
     }
