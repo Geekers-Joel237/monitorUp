@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('noms');
             $table->string('prenoms');
             $table->string('telephone')->unique();
+            $table->string('matricule')->unique()->nullable();
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('address')->nullable();
             $table->enum('role',['super','admin','user'])->default('user');
-            $table->integer('licence')->nullable();
-            $table->integer('actual_licence_number')->nullable();
+            // $table->integer('licence')->nullable();
+            // $table->integer('actual_licence_number')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
             $table->rememberToken();

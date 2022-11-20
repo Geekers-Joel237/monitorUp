@@ -17,6 +17,10 @@ class OrganisationController extends Controller
     public function index()
     {
         //
+        $organisations = Organisation::get();
+        return response()->json([
+            $organisations
+        ]);
     }
 
     /**

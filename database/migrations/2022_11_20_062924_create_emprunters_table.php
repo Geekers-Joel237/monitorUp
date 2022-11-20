@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('dateDebut');
             $table->time('heureDebut');
             $table->integer('duree');
-            $table->boolean('etatEmprunt');
+            $table->boolean('etatEmprunt')->default(1);
             $table->boolean('isValider');
             $table->foreignId('ressource_id')->constrained('ressources');
             $table->foreignId('user_id')->constrained('users');

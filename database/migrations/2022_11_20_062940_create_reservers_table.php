@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('dateDebut');
             $table->time('heureDebut');
             $table->integer('duree');
-            $table->boolean('etatReservation');
+            $table->boolean('etatReservation')->default(1);
             $table->foreignId('ressource_id')->constrained('ressources');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
