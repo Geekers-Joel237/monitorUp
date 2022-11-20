@@ -6,6 +6,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OrganisationController extends Controller
 {
@@ -18,9 +19,9 @@ class OrganisationController extends Controller
     {
         //
         $organisations = Organisation::get();
-        return response()->json([
+        return response()->json(
             $organisations
-        ]);
+        );
     }
 
     /**
@@ -41,27 +42,48 @@ class OrganisationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = Validator::make($request->all(),[
+            'nomOrganisation'=> 'required|unique:Organisations',
+        ]);
+        if($validated->fails()){
+            return response()->json($validated->errors(), 400);
+        }
+
+        $organisation = Organisation::create($request->all());
+
+        return response()->json(
+            $organisation
+        ,201);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Organisation  $organisation
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Organisation $organisation)
+    public function show($id)
     {
-        //
+        $organisation = Organisation::find($id);
+        if (is_null($organisation)) {
+            return response()->json([
+                'message' => 'organisation not found'
+            ],404);
+        }
+        return response()->json(
+          $organisation
+        );
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organisation  $organisation
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organisation $organisation)
+    public function edit($id)
     {
         //
     }
@@ -70,22 +92,46 @@ class OrganisationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Organisation  $organisation
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organisation $organisation)
+    public function update(Request $request, $id)
     {
-        //
+        $organisation = Organisation::find($id);
+        if (is_null($organisation)) {
+            return response()->json([
+                'message' => 'organisation not found'
+            ],404);
+        }
+        $validated = Validator::make($request->all(),[
+            'nomOrganisation'=> 'required|unique:Organisations',
+        ]);
+        if($validated->fails()){
+            return response()->json($validated->errors(), 400);
+        }
+        $organisation -> update($request->all());
+        return response()->json(
+            $organisation);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Organisation  $organisation
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organisation $organisation)
+    public function destroy($id)
     {
-        //
+        $organisation = Organisation::find($id);
+        if (is_null($organisation)) {
+            return response()->json([
+                'message'=>'organisation not found'
+            ],404);
+        }
+        $copieorganisation = $organisation;
+        $organisation->delete();
+        return response()->json(
+           $copieorganisation
+        );
     }
 }

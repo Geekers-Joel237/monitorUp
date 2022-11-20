@@ -19,7 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //route for admin
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\admin', 'as' => 'admin.'], function(){
+    Route::resource('organisation', OrganisationController::class);
+
+});
 
 
 //route for user
+Route::group(['prefix' => 'user', 'middleware' => ['auth'], 'namespace' => 'App\Http\Controllers\user', 'as' => 'user.'], function(){
+
+});
 

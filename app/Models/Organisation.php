@@ -9,7 +9,7 @@ class Organisation extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nomOraganisation'
+        'nomOrganisation'
     ];
 
     public function categories()
