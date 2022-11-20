@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Media;
+
+use App\Http\Controllers\Controller;
+use App\Models\Organisation;
 use Illuminate\Http\Request;
 
-class MediaController extends Controller
+class OrganisationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class MediaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function show(Media $media)
+    public function show(Organisation $organisation)
     {
         //
     }
@@ -52,10 +54,10 @@ class MediaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Media $media)
+    public function edit(Organisation $organisation)
     {
         //
     }
@@ -64,10 +66,10 @@ class MediaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Media $media)
+    public function update(Request $request, Organisation $organisation)
     {
         //
     }
@@ -75,10 +77,10 @@ class MediaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Media  $media
+     * @param  \App\Models\Organisation  $organisation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy(Organisation $organisation)
     {
         //
     }

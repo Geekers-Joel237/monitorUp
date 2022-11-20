@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\user;
 
-use App\Models\Reserver;
+use App\Http\Controllers\Controller;
+use App\Models\Emprunter;
 use Illuminate\Http\Request;
 
-class ReserverController extends Controller
+class EmprunterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class ReserverController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reserver  $reserver
+     * @param  \App\Models\Emprunter  $emprunter
      * @return \Illuminate\Http\Response
      */
-    public function show(Reserver $reserver)
+    public function show(Emprunter $emprunter)
     {
         //
     }
@@ -52,10 +53,10 @@ class ReserverController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reserver  $reserver
+     * @param  \App\Models\Emprunter  $emprunter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reserver $reserver)
+    public function edit(Emprunter $emprunter)
     {
         //
     }
@@ -64,10 +65,10 @@ class ReserverController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reserver  $reserver
+     * @param  \App\Models\Emprunter  $emprunter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reserver $reserver)
+    public function update(Request $request, Emprunter $emprunter)
     {
         //
     }
@@ -75,10 +76,10 @@ class ReserverController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reserver  $reserver
+     * @param  \App\Models\Emprunter  $emprunter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reserver $reserver)
+    public function destroy(Emprunter $emprunter)
     {
         //
     }

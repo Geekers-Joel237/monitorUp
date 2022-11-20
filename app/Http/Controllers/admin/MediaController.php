@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Emprunter;
+
+use App\Http\Controllers\Controller;
+use App\Models\Media;
 use Illuminate\Http\Request;
 
-class EmprunterController extends Controller
+class MediaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class EmprunterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Emprunter  $emprunter
+     * @param  \App\Models\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function show(Emprunter $emprunter)
+    public function show(Media $media)
     {
         //
     }
@@ -52,10 +54,10 @@ class EmprunterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Emprunter  $emprunter
+     * @param  \App\Models\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function edit(Emprunter $emprunter)
+    public function edit(Media $media)
     {
         //
     }
@@ -64,10 +66,10 @@ class EmprunterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Emprunter  $emprunter
+     * @param  \App\Models\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Emprunter $emprunter)
+    public function update(Request $request, Media $media)
     {
         //
     }
@@ -75,10 +77,10 @@ class EmprunterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Emprunter  $emprunter
+     * @param  \App\Models\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Emprunter $emprunter)
+    public function destroy(Media $media)
     {
         //
     }

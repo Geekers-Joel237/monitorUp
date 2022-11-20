@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Organisation;
+use App\Models\Ressource;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OrganisationController extends Controller
+class RessourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class OrganisationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Organisation  $organisation
+     * @param  \App\Models\Ressource  $ressource
      * @return \Illuminate\Http\Response
      */
-    public function show(Organisation $organisation)
+    public function show(Ressource $ressource)
     {
         //
     }
@@ -52,10 +53,10 @@ class OrganisationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organisation  $organisation
+     * @param  \App\Models\Ressource  $ressource
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organisation $organisation)
+    public function edit(Ressource $ressource)
     {
         //
     }
@@ -64,10 +65,10 @@ class OrganisationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Organisation  $organisation
+     * @param  \App\Models\Ressource  $ressource
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organisation $organisation)
+    public function update(Request $request, Ressource $ressource)
     {
         //
     }
@@ -75,10 +76,10 @@ class OrganisationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Organisation  $organisation
+     * @param  \App\Models\Ressource  $ressource
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organisation $organisation)
+    public function destroy(Ressource $ressource)
     {
         //
     }
