@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Emprunter extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'dateDebut',
+        'heureDebut',
+        'duree',
+        'etatEmprunt',
+        'isValider',
+        'ressource_id',
+        'user_id'
+    ];
 }

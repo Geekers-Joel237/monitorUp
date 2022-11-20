@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('ressources', function (Blueprint $table) {
             $table->id();
             $table->string('nomRessource');
-            $table->boolean('isDisponible');
             $table->text('description');
+            $table->boolean('isDisponible');
             $table->foreignId('categorie_id')->constrained('categories');
             $table->foreignId('organisation_id')->constrained('organisations');
             $table->timestamps();

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
+            $table->foreignId('organisation_id')->constrained('organisations');
             $table->timestamps();
         });
     }
