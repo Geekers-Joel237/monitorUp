@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\Reserver;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class ReserverController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class ReserverController extends Controller
     public function index()
     {
         //
-        $reserver = Reserver::get();
+        $notification = Notification::get();
         return response()->json(
-            $reserver
-        ,200);
+            $notification
+        );
     }
 
     /**
@@ -44,48 +44,48 @@ class ReserverController extends Controller
     {
         //
         $validator = Validator::make($request->all(),[
-            'dateDebut' =>'required|date',
-            'heureDebut'=>'required|time',
-            'duree'=>'required|integer',
-            'etatReservation'=>'required|boolean',
-            'ressource_id'=>'required|integer',
-            'user_id'=>'required|integer',
+            'content'=>'required|text',
+            'emetteur_id'=>'required|integer',
+            'recepteur_id'=>'required|integer'
         ]);
-        
+
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(),404);
         }
-
-        $reserver = Reserver::create($request->all());
+        $notification =Notification::create($request->all());
         return response()->json(
-            $reserver
+            $notification
         ,200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id $notification
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        $reserver = Reserver::find($id);
-        if(is_null($reserver)){
-            return response()->json(['message' =>'reserver not found'],404);
+        $notification = Notification::find($id);
+        if(is_null($notification)){
+            return response()->json([
+                'message' => 'notification not found'
+            ],404);
         }
 
-        return response()->json([$reserver],200);
+        return response()->json(
+            $notification
+        ,200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reserver  $reserver
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reserver $reserver)
+    public function edit(Notification $notification)
     {
         //
     }
@@ -94,34 +94,32 @@ class ReserverController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param int $id 
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
+        $notification = Notification::find($id);
+        if(is_null($notification)){
+            return response()->json([
+                'message' => 'notification not found'
+            ],404);
+        }
+
         $validator = Validator::make($request->all(),[
-            'dateDebut' =>'required|date',
-            'heureDebut'=>'required|time',
-            'duree'=>'required|integer',
-            'etatReservation'=>'required|boolean',
-            'ressource_id'=>'required|integer',
-            'user_id'=>'required|integer',
+            'content'=>'required|text',
+            'emetteur_id'=>'required|integer',
+            'recepteur_id'=>'required|integer'
         ]);
-        
+
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(),404);
         }
-        $reserver = Reserver::find($id);
-        if(is_null($reserver)){
-            return response()->json(['message' =>'reserver not found'],404);
-        }
-
-        $reserver->update($request->all());
+        $notification->update($request->all());
         return response()->json(
-            $reserver
+            $notification
         ,200);
-
     }
 
     /**
@@ -133,16 +131,17 @@ class ReserverController extends Controller
     public function destroy($id)
     {
         //
-        $reserver = Reserver::find($id);
-        if(is_null($reserver)){
-            return response()->json(['message' =>'reserver not found'],404);
+        $notification = Notification::find($id);
+        if(is_null($notification)){
+            return response()->json([
+                'message' => 'notification not found'
+            ],404);
         }
-        $copie = $reserver ;
-        $reserver->delete();
+
+        $copie = $notification;
+        $notification->delete();
         return response()->json(
-            [
-             'message'=>'reserver delete',
-             'data'=>$copie
-            ],200);
+            $copie
+        );
     }
 }
