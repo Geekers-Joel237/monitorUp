@@ -56,7 +56,7 @@ class MediaController extends Controller
                 $fileModal = new Media();
                 $fileModal->fileName = json_encode($fileName);
                 $fileModal->filePath = json_encode($filePath);
-                $fileModal->type = json_encode($extension);
+                $fileModal->extension = json_encode($extension);
 
 
 
@@ -82,12 +82,19 @@ class MediaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Media  $media
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Media $media)
+    public function show( $id)
     {
-        //
+        $file=Media::findOrFail($id);
+        if (File::exists(public_path("storage/uploads/".$file->fileName))) {
+
+            return response()->json($file);
+        }else{
+            return response()->json('not found');
+
+        }
     }
 
     /**
@@ -110,7 +117,7 @@ class MediaController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $req->validate([
+        $request->validate([
             'file' => 'required|mimes:doc,docx,pdf,txt,csv,png,jpg,jpeg|max:2048',
         ]);
         $files=Media::findOrFail($id);
@@ -122,15 +129,15 @@ class MediaController extends Controller
 
             $fileModel = new Media;
 
-            if($req->file()) {
-                $fileName = time().'_'.$req->file->getClientOriginalName();
-                $extension = $req->file->getClientOriginalExtension();
-                $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
-                $fileModel->fileName = time().'_'.$req->file->getClientOriginalName();
+            if($request->file()) {
+                $fileName = time().'_'.$request->file->getClientOriginalName();
+                $extension = $request->file->getClientOriginalExtension();
+                $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+                $fileModel->fileName = time().'_'.$request->file->getClientOriginalName();
                 $fileModel->filePath = '/storage/' . $filePath;
                 $fileModel->extension = $extension;
 
-                if($req->ressource_id)   $fileModel->ressource_id = $req->ressource_id;
+                if($request->ressource_id)   $fileModel->ressource_id = $request->ressource_id;
 
 
                 $fileModel->save();

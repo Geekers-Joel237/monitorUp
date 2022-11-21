@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //route for admin
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\admin', 'as' => 'admin.'], function(){
     Route::resource('organisation', OrganisationController::class);
+    Route::resource('categorie', CategorieController::class);
+    Route::resource('ressource', RessourceController::class);
+    Route::resource('media', MediaController::class);
 
 });
 

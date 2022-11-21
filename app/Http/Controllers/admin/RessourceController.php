@@ -42,7 +42,7 @@ class RessourceController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = Validator::make($req->all(),[
+        $validated = Validator::make($request->all(),[
             'nomRessource'=> 'required|unique:Ressources',
             'description'=>'sometimes',
             'isDisponible'=>'boolean|required',
@@ -53,7 +53,7 @@ class RessourceController extends Controller
             return response()->json($validated->errors(), 400);
         }
 
-        $ressource = Ressource::create($req->all());
+        $ressource = Ressource::create($request->all());
 
         return response()->json(
             $ressource
@@ -106,7 +106,7 @@ class RessourceController extends Controller
                 'message' => 'ressource not found'
             ],404);
         }
-        $validated = Validator::make($req->all(),[
+        $validated = Validator::make($request->all(),[
             'nomRessource'=> 'required|unique:Ressources',
             'description'=>'sometimes',
             'isDisponible'=>'boolean|required',
@@ -116,7 +116,7 @@ class RessourceController extends Controller
         if($validated->fails()){
             return response()->json($validated->errors(), 400);
         }
-        $ressource -> update($req->all());
+        $ressource -> update($request->all());
         return response()->json(
             $ressource);
     }
