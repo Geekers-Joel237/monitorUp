@@ -20,10 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //route for admin
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\admin', 'as' => 'admin.'], function(){
-    Route::resource('organisation', OrganisationController::class);
+    Route::resource('categorie', CategorieController::class);
+    Route::resource('ressource', RessourceController::class);
     Route::resource('media', MediaController::class);
-    Route::resource('categorie',CategorieController::class);
-    Route::resource('ressource',RessourceController::class);
 
 });
 
@@ -32,7 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\admin', 
 Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\user', 'as' => 'user.'], function(){
     Route::resource('emprunter',EmprunterController::class);
     Route::resource('notification', NotificationController::class);
-    Route::resource('reservstion',ReserverController::class);
+    Route::resource('reservation',ReserverController::class);
 });
 
 

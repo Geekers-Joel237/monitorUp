@@ -54,7 +54,7 @@ class CategorieController extends Controller
         $categorie = Categorie::create($request->all());
 
         return response()->json(
-            $categories
+            $categorie
         ,201);
     }
 
