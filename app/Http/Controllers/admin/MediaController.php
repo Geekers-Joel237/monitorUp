@@ -20,6 +20,10 @@ class MediaController extends Controller
     public function index()
     {
         //
+        $media = Media::get();
+        return response()->json(
+            $media
+        ,200);
     }
 
     /**

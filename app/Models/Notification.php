@@ -12,6 +12,5 @@ class Notification extends Model
         'contenu',
         'emetteur_id',
         'recepteur_id',
-
     ];
 }

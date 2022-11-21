@@ -5,6 +5,8 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Emprunter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class EmprunterController extends Controller
 {
@@ -16,6 +18,10 @@ class EmprunterController extends Controller
     public function index()
     {
         //
+        $emprunter = Emprunter::get();
+        return response()->json(
+            $emprunter
+        );
     }
 
     /**
@@ -37,17 +43,39 @@ class EmprunterController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'dateDebut' =>'required|date',
+            'heureDebut'=>'required|time',
+            'duree'=>'required|integer',
+            'etatEmprunt'=>'required|boolean',
+            'ressource_id'=>'required|integer',
+            'user_id'=>'required|integer',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(),400);
+        }
+
+        $emprunter = Emprunter::create($request->all());
+        return response()->json(
+            $emprunter
+        ,200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Emprunter  $emprunter
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Emprunter $emprunter)
+    public function show($id)
     {
         //
+        $emprunter =Emprunter::find($id);
+        if(is_null($emprunter)){
+            return response()->json(['message' =>'emprunt not found'],404);
+        }
+        return response()->json([$emprunter],200);
     }
 
     /**
@@ -65,22 +93,53 @@ class EmprunterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Emprunter  $emprunter
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Emprunter $emprunter)
+    public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(),[
+            'dateDebut' =>'required|date',
+            'heureDebut'=>'required|time',
+            'duree'=>'required|integer',
+            'etatEmprunt'=>'required|boolean',
+            'ressource_id'=>'required|integer',
+            'user_id'=>'required|integer',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(),400);
+        }
+        $emprunter =Emprunter::find($id);
+        if(is_null($emprunter)){
+            return response()->json(['message' =>'emprunt not found'],404);
+        }
+
+        $emprunter->update($request->all());
+        return response()->json(
+            $categorie
+        ,200);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Emprunter  $emprunter
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Emprunter $emprunter)
+    public function destroy($id)
     {
         //
+        $emprunter =Emprunter::find($id);
+        if(is_null($emprunter)){
+            return response()->json(['message' =>'emprunt not found'],404);
+        }
+        $copie = $emprunter ;
+        $emprunter->delete();
+        return response()->json(['message' =>'emprunt deleted',
+                                 'data'=>$copie
+                                ],404);
     }
 }
