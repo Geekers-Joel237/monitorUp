@@ -18,9 +18,9 @@ class ReserverController extends Controller
     public function index()
     {
         //
-        $reserver = Reserver::get();
+        $reservers = Reserver::get();
         return response()->json(
-            $reserver
+            $reservers
         ,200);
     }
 
@@ -47,11 +47,11 @@ class ReserverController extends Controller
             'dateDebut' =>'required|date',
             'heureDebut'=>'required|time',
             'duree'=>'required|integer',
-            'etatReservation'=>'required|boolean',
+            'etatReservation'=>'sometimes|boolean',
             'ressource_id'=>'required|integer',
             'user_id'=>'required|integer',
         ]);
-        
+
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(),404);
         }
@@ -76,7 +76,7 @@ class ReserverController extends Controller
             return response()->json(['message' =>'reserver not found'],404);
         }
 
-        return response()->json([$reserver],200);
+        return response()->json($reserver,200);
     }
 
     /**
@@ -108,7 +108,7 @@ class ReserverController extends Controller
             'ressource_id'=>'required|integer',
             'user_id'=>'required|integer',
         ]);
-        
+
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(),404);
         }

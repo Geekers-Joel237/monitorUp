@@ -18,9 +18,9 @@ class NotificationController extends Controller
     public function index()
     {
         //
-        $notification = Notification::get();
+        $notifications = Notification::get();
         return response()->json(
-            $notification
+            $notifications
         );
     }
 
@@ -46,7 +46,7 @@ class NotificationController extends Controller
         $validator = Validator::make($request->all(),[
             'content'=>'required|text',
             'emetteur_id'=>'required|integer',
-            'recepteur_id'=>'required|integer'
+            'recepteur_id'=>'sometimes|integer'
         ]);
 
         if($validator->fails()){
@@ -94,7 +94,7 @@ class NotificationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param int $id 
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -110,7 +110,7 @@ class NotificationController extends Controller
         $validator = Validator::make($request->all(),[
             'content'=>'required|text',
             'emetteur_id'=>'required|integer',
-            'recepteur_id'=>'required|integer'
+            'recepteur_id'=>'sometimes|integer'
         ]);
 
         if($validator->fails()){

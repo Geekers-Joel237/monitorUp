@@ -47,7 +47,7 @@ class EmprunterController extends Controller
             'dateDebut' =>'required|date',
             'heureDebut'=>'required|time',
             'duree'=>'required|integer',
-            'etatEmprunt'=>'required|boolean',
+            'etatEmprunt'=>'sometimes|boolean',
             'ressource_id'=>'required|integer',
             'user_id'=>'required|integer',
         ]);
@@ -103,7 +103,7 @@ class EmprunterController extends Controller
             'dateDebut' =>'required|date',
             'heureDebut'=>'required|time',
             'duree'=>'required|integer',
-            'etatEmprunt'=>'required|boolean',
+            'etatEmprunt'=>'sometimes|boolean',
             'ressource_id'=>'required|integer',
             'user_id'=>'required|integer',
         ]);
@@ -118,7 +118,7 @@ class EmprunterController extends Controller
 
         $emprunter->update($request->all());
         return response()->json(
-            $categorie
+            $emprunter
         ,200);
 
     }
