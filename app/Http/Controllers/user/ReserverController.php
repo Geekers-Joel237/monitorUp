@@ -45,7 +45,7 @@ class ReserverController extends Controller
         //
         $validator = Validator::make($request->all(),[
             'dateDebut' =>'required|date',
-            'heureDebut'=>'required|time',
+            'heureDebut'=>'required',
             'duree'=>'required|integer',
             'etatReservation'=>'sometimes|boolean',
             'ressource_id'=>'required|integer',
@@ -102,7 +102,7 @@ class ReserverController extends Controller
         //
         $validator = Validator::make($request->all(),[
             'dateDebut' =>'required|date',
-            'heureDebut'=>'required|time',
+            'heureDebut'=>'required',
             'duree'=>'required|integer',
             'etatReservation'=>'required|boolean',
             'ressource_id'=>'required|integer',

@@ -1,0 +1,8 @@
+les post sur toutes les tables de l'admin fonctionne 
+neamoins les validatuers de media ne sont pas assez parlant
+beacoup d'erreur dans les controlleurs notamment ceux d'emprunter et reserver
+a cause des validateurs qui  n'existait pas
+erreur au niveau du champ du nom dans la tbale users pour reer le factory
+il etait marque name au lieu de noms
+UserFactory extends Factory
+mauvaise definition de facon generale des seed 
