@@ -22,6 +22,8 @@ use App\Http\Controllers\Api\AuthController;
 Route::post('/register', [AuthController::class, 'register']);
 //login user
 Route::post('/login', [AuthController::class, 'login']);
+//login user
+Route::post('/logout', [AuthController::class, 'signout']);
 
 //route for admin
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\admin', 'as' => 'admin.'], function(){

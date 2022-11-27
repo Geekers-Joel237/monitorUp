@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -49,12 +50,20 @@ class AuthController extends Controller
      //use this method to signin users
      public function login(Request $request)
      {
-         $attr = $request->validate([
-             'email' => 'required|string|email|',
-             'password' => 'required|string|min:6'
-         ]);
+        $password = hash('sha256', $request->password);
+        // $request->password = hash('sha256',$request->password);
+        //  $attr = $request->validate([
+        //      'email' => 'required|string|email|',
+        //      'password' => 'required|string|min:6'
+        //  ]);
+         $attr = [
+            'email'=>"'$request->email'",
+            'password'=>"'$password'"];
 
+         var_dump($password);
+        // $attr['password'] = hash('sha256',$attr['password'] ) ;
          if (!Auth::attempt($attr)) {
+            // Authentication not passed...
              return response()->json('Credentials not match', 401);
          }
 
