@@ -45,7 +45,7 @@ class EmprunterController extends Controller
         //
         $validator = Validator::make($request->all(),[
             'dateDebut' =>'required|date',
-            'heureDebut'=>'required|time',
+            'heureDebut'=>'required',
             'duree'=>'required|integer',
             'etatEmprunt'=>'sometimes|boolean',
             'ressource_id'=>'required|integer',
@@ -101,7 +101,7 @@ class EmprunterController extends Controller
         //
         $validator = Validator::make($request->all(),[
             'dateDebut' =>'required|date',
-            'heureDebut'=>'required|time',
+            'heureDebut'=>'required',
             'duree'=>'required|integer',
             'etatEmprunt'=>'sometimes|boolean',
             'ressource_id'=>'required|integer',
