@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+//register new user
+Route::post('/register', [AuthController::class, 'register']);
+//login user
+Route::post('/login', [AuthController::class, 'login']);
 
 //route for admin
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\admin', 'as' => 'admin.'], function(){
